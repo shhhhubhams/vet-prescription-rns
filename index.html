@@ -14,7 +14,7 @@
       color: #0f172a;
     }
     .sheet {
-      max-width: 680px;
+      max-width: 700px;
       margin: 0 auto;
       background: #ffffff;
       border-radius: 8px;
@@ -49,16 +49,19 @@
       margin-bottom: 14px;
     }
     .info-table td {
-      padding: 5px 8px;
-      border: 1px solid #e2e8f0;
+      padding: 6px 8px;
+      border: 1px solid #cbd5e1;
     }
     .info-table .lbl {
       background: #f8fafc;
       font-weight: 600;
       color: #334155;
-      width: 20%;
+      width: 22%;
     }
-    .info-table .val { color: #0f172a; }
+    .info-table .val {
+      color: #0f172a;
+      width: 28%;
+    }
     .section-title {
       font-size: 13px;
       font-weight: 700;
@@ -84,14 +87,29 @@
       font-weight: 600;
     }
     .med-table tr:nth-child(even) { background: #f8fafc; }
+    .cat-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      color: #0369a1;
+      background: #e0f2fe;
+      padding: 1px 5px;
+      border-radius: 3px;
+      margin-bottom: 2px;
+    }
     .instructions-list {
       font-size: 11.5px;
       line-height: 1.6;
       margin: 0;
-      padding-left: 20px;
+      padding-left: 18px;
       color: #1e293b;
     }
-    .instructions-list li { margin-bottom: 4px; }
+    .instructions-list li { margin-bottom: 5px; }
+    .sub-list {
+      list-style-type: circle;
+      padding-left: 18px;
+      margin: 2px 0 4px 0;
+    }
     .highlight-date {
       font-weight: 600;
       color: #0369a1;
@@ -104,23 +122,34 @@
       border: 1px solid #bfdbfe;
       border-radius: 6px;
       padding: 10px 14px;
-      margin-top: 10px;
+      margin-top: 12px;
       font-size: 12px;
     }
     .revisit-dates {
       display: flex;
-      gap: 12px;
-      margin-top: 4px;
+      gap: 14px;
+      margin-top: 5px;
       flex-wrap: wrap;
     }
     .footer-section {
-      margin-top: 18px;
+      margin-top: 16px;
       padding-top: 12px;
       border-top: 1px dashed #cbd5e1;
       font-size: 11.5px;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .notes-footer {
+      margin-top: 10px;
+      font-size: 11px;
+      color: #475569;
+      background: #f8fafc;
+      padding: 8px 10px;
+      border-radius: 6px;
+      border-left: 3px solid #0284c7;
     }
     .btn {
       display: block;
@@ -146,22 +175,29 @@
 </head>
 <body>
   <div class="sheet">
+    <!-- Rows 1 to 2 -->
     <div class="clinic-header">
       <h1>Department of Veterinary Surgery and Radiology, CoVS, LUVAS- Hisar</h1>
       <h2>POST OPERATIVE PRESCRIPTION (Orthopaedics)</h2>
     </div>
 
-    <!-- Rows 4 to 12 -->
+    <!-- Rows 3 to 12 -->
     <table class="info-table">
       <tr>
-        <td class="lbl">OPD No:</td>
+        <td class="lbl">Owner Name:</td>
+        <td class="val"><b id="d-own">-</b></td>
+        <td class="lbl">Contact Number:</td>
+        <td class="val" id="d-con">-</td>
+      </tr>
+      <tr>
+        <td class="lbl">OPD No.:</td>
         <td class="val"><b id="d-opd">-</b></td>
         <td class="lbl">Date:</td>
         <td class="val" id="d-date">-</td>
       </tr>
       <tr>
-        <td class="lbl">Surgery Date:</td>
-        <td class="val" id="d-sdate">-</td>
+        <td class="lbl">Date of Surgery:</td>
+        <td class="val"><b id="d-sdate">-</b></td>
         <td class="lbl">Body Weight:</td>
         <td class="val"><b id="d-wt">-</b></td>
       </tr>
@@ -174,7 +210,7 @@
         <td class="val" colspan="3"><b id="d-proc">-</b></td>
       </tr>
       <tr>
-        <td class="lbl">Findings:</td>
+        <td class="lbl">Intra-operative findings:</td>
         <td class="val" colspan="3" id="d-find">-</td>
       </tr>
     </table>
@@ -184,7 +220,7 @@
     <table class="med-table">
       <thead>
         <tr>
-          <th>Category & Medicine</th>
+          <th>Category &amp; Medication</th>
           <th>Dose</th>
           <th>Frequency</th>
           <th>Duration</th>
@@ -195,45 +231,75 @@
     </table>
 
     <!-- Rows 27 to 40 -->
-    <div class="section-title">Post-Operative Care & Management</div>
+    <div class="section-title">Post-Operative Instructions &amp; Management</div>
     <ul class="instructions-list">
-      <li><b>RJB Bandage:</b> Change daily if wet, otherwise on 5th day (<span class="highlight-date" id="d-rjb1">-</span>), and re-apply up to <span class="highlight-date" id="d-rjb2">-</span>.</li>
-      <li><b>Antiseptic Dressing (ASD):</b> ASD with Betadine / Spirit at the time of RJB changes.</li>
-      <li><b>Suture Removal:</b> After 10–14 days, between <span class="highlight-date" id="d-sut1">-</span> to <span class="highlight-date" id="d-sut2">-</span>.</li>
-      <li><b>Movement Restriction:</b> Complete rest for first 7 days (up to <span class="highlight-date" id="d-mov1">-</span>).</li>
-      <li><b>Leash Walking:</b> From <span class="highlight-date" id="d-mov2a">-</span> to <span class="highlight-date" id="d-mov2b">-</span>.</li>
-      <li><b>Passive Physiotherapy (PROM):</b> After 10 days, from <span class="highlight-date" id="d-mov3a">-</span> to <span class="highlight-date" id="d-mov3b">-</span>.</li>
-      <li><b>General Precautions:</b> Apply E-collar to prevent self-mutilation. Keep pet under 24-hr observation up to <span class="highlight-date" id="d-obs">-</span>. Avoid movement on slippery floors and stairs until full recovery.</li>
+      <li>
+        Change RJB daily if get wet, otherwise change on 5th day (Date: <span class="highlight-date" id="d-rjb1">-</span>)
+        and re-apply RJB for next 10 days upto <span class="highlight-date" id="d-rjb2">-</span>.
+      </li>
+      <li>ASD with betadine/ Spirit at the time of changes of RJB.</li>
+      <li>
+        <b>Suture removal:</b> After 10–14 days — Between <span class="highlight-date" id="d-sut1">-</span> to <span class="highlight-date" id="d-sut2">-</span>.
+      </li>
+      <li>
+        <b>Movement:</b>
+        <ul class="sub-list">
+          <li>Restrict complete movement for first 7 days upto <span class="highlight-date" id="d-mov1">-</span>.</li>
+          <li>Leash walking after 7 days till 30 days of surgery: From <span class="highlight-date" id="d-mov2a">-</span> to <span class="highlight-date" id="d-mov2b">-</span>.</li>
+          <li>Passive physiotherapy after 10 days (PROM): From <span class="highlight-date" id="d-mov3a">-</span> to <span class="highlight-date" id="d-mov3b">-</span>.</li>
+        </ul>
+      </li>
+      <li>
+        <b>General Precautions:</b>
+        <ul class="sub-list">
+          <li>Apply E collar and prevent self-mutilation.</li>
+          <li>Keep pet under observation 24 hours for first 7 days upto <span class="highlight-date" id="d-obs">-</span>.</li>
+          <li>Avoid movement on slippery floor and stairs till complete recovery.</li>
+        </ul>
+      </li>
     </ul>
 
     <!-- Row 40 Revisit -->
     <div class="revisit-box">
-      <b>Revisit for Assessment on:</b>
+      <b>Revisit for assessment on:</b>
       <div class="revisit-dates">
-        <span><b>1st Revisit:</b> <span class="highlight-date" id="d-rev1">-</span></span>
-        <span><b>2nd Revisit:</b> <span class="highlight-date" id="d-rev2">-</span></span>
-        <span><b>3rd Revisit:</b> <span class="highlight-date" id="d-rev3">-</span></span>
+        <span><b>1st Visit:</b> <span class="highlight-date" id="d-rev1">-</span></span>
+        <span><b>2nd Visit:</b> <span class="highlight-date" id="d-rev2">-</span></span>
+        <span><b>3rd Visit:</b> <span class="highlight-date" id="d-rev3">-</span></span>
       </div>
     </div>
 
     <!-- Rows 42 to 46 -->
     <div class="footer-section">
       <div>
-        <div><b>Emergency Contact:</b> <span id="d-emg">+91 0</span></div>
-        <div><b>Contact Timings:</b> 14:00 to 17:00</div>
-        <div style="color: #64748b; font-size: 10.5px; margin-top: 4px;">* Note: If scheduled visit falls on a holiday, visit on next working day.</div>
+        <div><b>Contact No. only for emergency:</b> <span id="d-emg">-</span></div>
+        <div><b>Timing for contact:</b> <span id="d-time">14:00 to 17:00</span></div>
       </div>
       <div style="text-align: right;">
-        <div style="font-weight: 700; color: #0369a1; font-size: 13px;">Dr. Ram Niwas</div>
+        <div style="font-weight: 700; color: #0369a1; font-size: 14px;" id="d-doc">Dr. Ram Niwas</div>
         <div style="font-size: 11px; color: #64748b;">Attending Surgeon</div>
       </div>
+    </div>
+
+    <!-- Rows 45 & 47 -->
+    <div class="notes-footer">
+      <div>• <b>Please bring prescription on every visit.</b></div>
+      <div>• <b>Note:</b> If the scheduled date falls on a holiday, then visit on the next working day.</div>
     </div>
 
     <button class="btn" onclick="window.print()">Print / Save as PDF</button>
   </div>
 
   <script>
-    // Robust query extraction supporting both search and hash formats
+    // Safely decode URL-encoded strings (even if encoded twice)
+    const clean = (val) => {
+      if (!val) return '';
+      let s = val;
+      try { s = decodeURIComponent(s); } catch (e) {}
+      try { s = decodeURIComponent(s); } catch (e) {}
+      return s.replace(/[HASH]/g, '#').trim();
+    };
+
     let rawQuery = window.location.search;
     if (!rawQuery || rawQuery.length <= 1) {
       if (window.location.hash && window.location.hash.includes('=')) {
@@ -242,12 +308,14 @@
     }
     const p = new URLSearchParams(rawQuery);
 
-    const set = (id, val) => {
+    const set = (id, val, fallback = '-') => {
       const el = document.getElementById(id);
-      if (el) el.textContent = (val && val.trim() !== '') ? val : '-';
+      const text = clean(val);
+      if (el) el.textContent = (text !== '') ? text : fallback;
     };
 
-    const parseDt = (str) => {
+    const parseDt = (raw) => {
+      const str = clean(raw);
       if (!str) return null;
       const parts = str.split('/');
       if (parts.length === 3) {
@@ -263,10 +331,12 @@
       return `${String(res.getDate()).padStart(2, '0')}/${String(res.getMonth() + 1).padStart(2, '0')}/${res.getFullYear()}`;
     };
 
-    // Extract core parameters
+    // Populate Patient & Surgery Metadata (Rows 3 to 12)
     const sdateRaw = p.get('s') || p.get('sdt');
     const surgDate = parseDt(sdateRaw);
 
+    set('d-own', p.get('n') || p.get('own'));
+    set('d-con', p.get('c') || p.get('ph'));
     set('d-opd', p.get('o') || p.get('opd'));
     set('d-date', p.get('d') || p.get('dt'));
     set('d-sdate', sdateRaw);
@@ -275,7 +345,7 @@
     set('d-proc', p.get('p') || p.get('proc'));
     set('d-find', p.get('f') || p.get('find'));
 
-    // Automatically calculate milestones from Surgery Date
+    // Populate Post-Op Schedule (Rows 27 to 40, computed from Surgery Date H4)
     set('d-rjb1', addDays(surgDate, 5));
     set('d-rjb2', addDays(surgDate, 15));
     set('d-sut1', addDays(surgDate, 10));
@@ -289,18 +359,29 @@
     set('d-rev1', addDays(surgDate, 14));
     set('d-rev2', addDays(surgDate, 30));
     set('d-rev3', addDays(surgDate, 60));
-    set('d-emg', p.get('emg') || '+91 0');
 
-    // Populate prescribed medications
+    // Populate Footer (Rows 42 to 46)
+    set('d-emg', p.get('e') || p.get('emg'), '-');
+    set('d-time', p.get('t') || p.get('time'), '14:00 to 17:00');
+    set('d-doc', p.get('dr') || p.get('doc'), 'Dr. Ram Niwas');
+
+    // Populate Medications Table (Rows 14 to 26)
     const tbody = document.getElementById('d-meds');
     let idx = 1;
     let found = false;
     while (p.has('m' + idx)) {
       found = true;
-      const parts = p.get('m' + idx).split('|');
+      const rawItem = p.get('m' + idx);
+      const parts = rawItem.split('|').map(s => clean(s));
       const tr = document.createElement('tr');
+      // Format: Category~DrugName | Dose | Freq | Duration | Route
+      let medDisplay = `<b>${parts[0] || ''}</b>`;
+      if (parts[0] && parts[0].includes('~')) {
+        const catParts = parts[0].split('~');
+        medDisplay = `<span class="cat-badge">${catParts[0]}</span><br><b>${catParts[1]}</b>`;
+      }
       tr.innerHTML = `
-        <td><b>${parts[0] || ''}</b></td>
+        <td>${medDisplay}</td>
         <td>${parts[1] || ''}</td>
         <td>${parts[2] || ''}</td>
         <td>${parts[3] || ''}</td>
