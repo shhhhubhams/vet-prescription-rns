@@ -233,10 +233,18 @@
   </div>
 
   <script>
-    const p = new URLSearchParams(window.location.search);
+    // Robust query extraction supporting both search and hash formats
+    let rawQuery = window.location.search;
+    if (!rawQuery || rawQuery.length <= 1) {
+      if (window.location.hash && window.location.hash.includes('=')) {
+        rawQuery = '?' + window.location.hash.substring(1);
+      }
+    }
+    const p = new URLSearchParams(rawQuery);
+
     const set = (id, val) => {
       const el = document.getElementById(id);
-      if (el) el.textContent = val || '-';
+      if (el) el.textContent = (val && val.trim() !== '') ? val : '-';
     };
 
     const parseDt = (str) => {
@@ -252,4 +260,58 @@
       if (!d || isNaN(d.getTime())) return '-';
       const res = new Date(d);
       res.setDate(res.getDate() + n);
-      return `${String(res.getDate()).padStart(2, '0')}/${String(res.getMonth() +
+      return `${String(res.getDate()).padStart(2, '0')}/${String(res.getMonth() + 1).padStart(2, '0')}/${res.getFullYear()}`;
+    };
+
+    // Extract core parameters
+    const sdateRaw = p.get('s') || p.get('sdt');
+    const surgDate = parseDt(sdateRaw);
+
+    set('d-opd', p.get('o') || p.get('opd'));
+    set('d-date', p.get('d') || p.get('dt'));
+    set('d-sdate', sdateRaw);
+    set('d-wt', p.get('w') || p.get('wt'));
+    set('d-hist', p.get('h') || p.get('hist'));
+    set('d-proc', p.get('p') || p.get('proc'));
+    set('d-find', p.get('f') || p.get('find'));
+
+    // Automatically calculate milestones from Surgery Date
+    set('d-rjb1', addDays(surgDate, 5));
+    set('d-rjb2', addDays(surgDate, 15));
+    set('d-sut1', addDays(surgDate, 10));
+    set('d-sut2', addDays(surgDate, 14));
+    set('d-mov1', addDays(surgDate, 7));
+    set('d-mov2a', addDays(surgDate, 7));
+    set('d-mov2b', addDays(surgDate, 30));
+    set('d-mov3a', addDays(surgDate, 10));
+    set('d-mov3b', addDays(surgDate, 30));
+    set('d-obs', addDays(surgDate, 7));
+    set('d-rev1', addDays(surgDate, 14));
+    set('d-rev2', addDays(surgDate, 30));
+    set('d-rev3', addDays(surgDate, 60));
+    set('d-emg', p.get('emg') || '+91 0');
+
+    // Populate prescribed medications
+    const tbody = document.getElementById('d-meds');
+    let idx = 1;
+    let found = false;
+    while (p.has('m' + idx)) {
+      found = true;
+      const parts = p.get('m' + idx).split('|');
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><b>${parts[0] || ''}</b></td>
+        <td>${parts[1] || ''}</td>
+        <td>${parts[2] || ''}</td>
+        <td>${parts[3] || ''}</td>
+        <td>${parts[4] || ''}</td>
+      `;
+      tbody.appendChild(tr);
+      idx++;
+    }
+    if (!found) {
+      tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#94a3b8; padding: 12px;">No medications specified</td></tr>';
+    }
+  </script>
+</body>
+</html>
