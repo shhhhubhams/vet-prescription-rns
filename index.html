@@ -7,171 +7,285 @@
   <style>
     * { box-sizing: border-box; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: #f1f5f9;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: #e2e8f0;
       margin: 0;
-      padding: 16px;
-      color: #1e293b;
+      padding: 12px;
+      color: #0f172a;
     }
-    .container {
-      max-width: 600px;
+    .sheet {
+      max-width: 680px;
       margin: 0 auto;
       background: #ffffff;
-      border-radius: 12px;
-      padding: 24px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 20px 24px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      border: 1px solid #cbd5e1;
     }
-    .header {
+    .clinic-header {
       text-align: center;
       border-bottom: 2px solid #0284c7;
-      padding-bottom: 12px;
-      margin-bottom: 16px;
+      padding-bottom: 10px;
+      margin-bottom: 14px;
     }
-    .header h1 {
+    .clinic-header h1 {
       font-size: 15px;
       font-weight: 700;
       color: #0369a1;
       margin: 0 0 4px 0;
       line-height: 1.3;
     }
-    .header h2 {
+    .clinic-header h2 {
       font-size: 13px;
-      font-weight: 600;
-      color: #475569;
+      font-weight: 700;
+      color: #334155;
       margin: 0;
       letter-spacing: 0.5px;
     }
-    .meta-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      background: #f8fafc;
-      padding: 12px;
-      border-radius: 8px;
-      font-size: 13px;
-      margin-bottom: 18px;
-      border: 1px solid #e2e8f0;
-    }
-    .meta-full {
-      grid-column: span 2;
-    }
-    .meta-item b {
-      color: #0f172a;
-    }
-    table {
+    .info-table {
       width: 100%;
       border-collapse: collapse;
       font-size: 12px;
-      margin-top: 10px;
+      margin-bottom: 14px;
     }
-    th, td {
+    .info-table td {
+      padding: 5px 8px;
+      border: 1px solid #e2e8f0;
+    }
+    .info-table .lbl {
+      background: #f8fafc;
+      font-weight: 600;
+      color: #334155;
+      width: 18%;
+    }
+    .info-table .val {
+      color: #0f172a;
+    }
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0369a1;
+      margin: 14px 0 6px 0;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #bae6fd;
+      padding-bottom: 4px;
+    }
+    .med-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11.5px;
+      margin-top: 4px;
+    }
+    .med-table th, .med-table td {
       border: 1px solid #cbd5e1;
-      padding: 8px;
+      padding: 6px 8px;
       text-align: left;
     }
-    th {
+    .med-table th {
       background: #0284c7;
       color: #ffffff;
       font-weight: 600;
+      font-size: 11.5px;
     }
-    tr:nth-child(even) {
-      background: #f8fafc;
+    .med-table tr:nth-child(even) { background: #f8fafc; }
+    .instructions-list {
+      font-size: 11.5px;
+      line-height: 1.6;
+      margin: 0;
+      padding-left: 20px;
+      color: #1e293b;
     }
-    .notes {
-      margin-top: 18px;
-      padding: 12px;
-      background: #fefce8;
-      border-left: 4px solid #eab308;
+    .instructions-list li { margin-bottom: 4px; }
+    .highlight-date {
+      font-weight: 600;
+      color: #0369a1;
+      background: #e0f2fe;
+      padding: 1px 6px;
       border-radius: 4px;
-      font-size: 12px;
-      color: #713f12;
-      line-height: 1.5;
     }
-    .btn-container {
-      margin-top: 20px;
-      text-align: center;
+    .revisit-box {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin-top: 10px;
+      font-size: 12px;
+    }
+    .revisit-dates {
+      display: flex;
+      gap: 12px;
+      margin-top: 4px;
+      flex-wrap: wrap;
+    }
+    .footer-section {
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px dashed #cbd5e1;
+      font-size: 11.5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
     }
     .btn {
+      display: block;
+      width: 100%;
       background: #0284c7;
-      color: white;
-      border: none;
-      padding: 12px 24px;
+      color: #fff;
+      text-align: center;
+      padding: 12px;
       font-size: 14px;
       font-weight: 600;
-      border-radius: 8px;
+      border-radius: 6px;
+      border: none;
       cursor: pointer;
-      width: 100%;
+      margin-top: 18px;
       box-shadow: 0 2px 6px rgba(2, 132, 199, 0.3);
     }
     @media print {
       body { background: #fff; padding: 0; }
-      .container { box-shadow: none; border: none; padding: 0; max-width: 100%; }
-      .btn-container { display: none; }
+      .sheet { box-shadow: none; border: none; padding: 0; max-width: 100%; }
+      .btn { display: none; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>Department of Veterinary Surgery & Radiology</h1>
-      <h2>POST OPERATIVE PRESCRIPTION (ORTHOPAEDICS)</h2>
+  <div class="sheet">
+    <div class="clinic-header">
+      <h1>Department of Veterinary Surgery and Radiology, CoVS, LUVAS- Hisar</h1>
+      <h2>POST OPERATIVE PRESCRIPTION (Orthopaedics)</h2>
     </div>
 
-    <div class="meta-grid">
-      <div class="meta-item"><b>OPD No:</b> <span id="opd">-</span></div>
-      <div class="meta-item"><b>Date:</b> <span id="date">-</span></div>
-      <div class="meta-item"><b>Surgery Date:</b> <span id="sdate">-</span></div>
-      <div class="meta-item"><b>Body Weight:</b> <span id="wt">-</span></div>
-      <div class="meta-item meta-full"><b>Procedure:</b> <span id="proc">-</span></div>
-      <div class="meta-item meta-full" id="history-box" style="display:none;"><b>History:</b> <span id="history">-</span></div>
-    </div>
+    <!-- Patient & Owner Details (Rows 4 - 13) -->
+    <table class="info-table">
+      <tr>
+        <td class="lbl">Owner Name:</td>
+        <td class="val" id="d-owner">-</td>
+        <td class="lbl">Contact No:</td>
+        <td class="val" id="d-phone">-</td>
+      </tr>
+      <tr>
+        <td class="lbl">OPD No:</td>
+        <td class="val"><b id="d-opd">-</b></td>
+        <td class="lbl">Date:</td>
+        <td class="val" id="d-date">-</td>
+      </tr>
+      <tr>
+        <td class="lbl">Surgery Date:</td>
+        <td class="val" id="d-sdate">-</td>
+        <td class="lbl">Body Weight:</td>
+        <td class="val"><b id="d-wt">-</b></td>
+      </tr>
+      <tr>
+        <td class="lbl">Brief History:</td>
+        <td class="val" colspan="3" id="d-hist">-</td>
+      </tr>
+      <tr>
+        <td class="lbl">Procedure:</td>
+        <td class="val" colspan="3"><b id="d-proc">-</b></td>
+      </tr>
+      <tr>
+        <td class="lbl">Findings:</td>
+        <td class="val" colspan="3" id="d-find">-</td>
+      </tr>
+    </table>
 
-    <h3 style="font-size:13px; color:#0369a1; margin: 12px 0 6px 0;">Prescribed Medications (Rx)</h3>
-    <table>
+    <!-- Medications Table (Rows 14 - 26) -->
+    <div class="section-title">Rx — Prescribed Medications</div>
+    <table class="med-table">
       <thead>
         <tr>
-          <th>Medicine</th>
+          <th>Category & Medicine</th>
           <th>Dose</th>
-          <th>Freq</th>
+          <th>Frequency</th>
           <th>Duration</th>
           <th>Route</th>
         </tr>
       </thead>
-      <tbody id="med-tbody"></tbody>
+      <tbody id="d-meds"></tbody>
     </table>
 
-    <div class="notes">
-      <b>Important Instructions:</b>
-      <div style="margin-top: 4px;">• Bring this prescription on every follow-up visit.</div>
-      <div>• If the scheduled date falls on a holiday, visit on the next working day.</div>
-      <div>• Apply E-collar to prevent self-mutilation. Restrict movement on slippery floors.</div>
+    <!-- Post-Operative Instructions & Schedules (Rows 28 - 41) -->
+    <div class="section-title">Post-Operative Care & Management</div>
+    <ul class="instructions-list">
+      <li><b>RJB Bandage:</b> Change daily if wet, otherwise on 5th day (<span class="highlight-date" id="d-rjb1">-</span>), and re-apply up to <span class="highlight-date" id="d-rjb2">-</span>.</li>
+      <li><b>Antiseptic Dressing (ASD):</b> ASD with Betadine / Spirit at the time of RJB changes.</li>
+      <li><b>Suture Removal:</b> After 10–14 days, between <span class="highlight-date" id="d-sut1">-</span> to <span class="highlight-date" id="d-sut2">-</span>.</li>
+      <li><b>Movement Restriction:</b> Complete rest for first 7 days (up to <span class="highlight-date" id="d-mov1">-</span>).</li>
+      <li><b>Leash Walking:</b> From <span class="highlight-date" id="d-mov2a">-</span> to <span class="highlight-date" id="d-mov2b">-</span>.</li>
+      <li><b>Passive Physiotherapy (PROM):</b> After 10 days, from <span class="highlight-date" id="d-mov3a">-</span> to <span class="highlight-date" id="d-mov3b">-</span>.</li>
+      <li><b>General Precautions:</b> Apply E-collar to prevent self-mutilation. Keep pet under 24-hr observation up to <span class="highlight-date" id="d-obs">-</span>. Avoid movement on slippery floors and stairs until full recovery.</li>
+    </ul>
+
+    <!-- Follow-up Revisit Dates (Row 41) -->
+    <div class="revisit-box">
+      <b>Revisit for Assessment on:</b>
+      <div class="revisit-dates">
+        <span><b>1st Revisit:</b> <span class="highlight-date" id="d-rev1">-</span></span>
+        <span><b>2nd Revisit:</b> <span class="highlight-date" id="d-rev2">-</span></span>
+        <span><b>3rd Revisit:</b> <span class="highlight-date" id="d-rev3">-</span></span>
+      </div>
     </div>
 
-    <div class="btn-container">
-      <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+    <!-- Emergency Contact & Doctor Sign (Rows 43 - 48) -->
+    <div class="footer-section">
+      <div>
+        <div><b>Emergency Contact:</b> <span id="d-emg">+91 0</span></div>
+        <div><b>Contact Timings:</b> <span id="d-time">14:00 to 17:00</span></div>
+        <div style="color: #64748b; font-size: 10.5px; margin-top: 4px;">* Note: If scheduled visit falls on a holiday, visit on next working day.</div>
+      </div>
+      <div style="text-align: right;">
+        <div style="font-weight: 700; color: #0369a1; font-size: 13px;" id="d-doc">Dr. Ram Niwas</div>
+        <div style="font-size: 11px; color: #64748b;">Attending Surgeon</div>
+      </div>
     </div>
+
+    <button class="btn" onclick="window.print()">Print / Save as PDF</button>
   </div>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
-    document.getElementById('opd').textContent = params.get('opd') || '-';
-    document.getElementById('date').textContent = params.get('date') || '-';
-    document.getElementById('sdate').textContent = params.get('sdate') || '-';
-    document.getElementById('wt').textContent = params.get('wt') || '-';
-    document.getElementById('proc').textContent = params.get('proc') || '-';
+    const p = new URLSearchParams(window.location.search);
+    const set = (id, val) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = val || '-';
+    };
 
-    if (params.get('hist')) {
-      document.getElementById('history-box').style.display = 'block';
-      document.getElementById('history').textContent = params.get('hist');
-    }
+    // Header & Meta
+    set('d-owner', p.get('own'));
+    set('d-phone', p.get('ph'));
+    set('d-opd', p.get('opd'));
+    set('d-date', p.get('dt'));
+    set('d-sdate', p.get('sdt'));
+    set('d-wt', p.get('wt'));
+    set('d-hist', p.get('hist'));
+    set('d-proc', p.get('proc'));
+    set('d-find', p.get('find'));
 
-    const tbody = document.getElementById('med-tbody');
+    // Post-op dates
+    set('d-rjb1', p.get('rjb1'));
+    set('d-rjb2', p.get('rjb2'));
+    set('d-sut1', p.get('sut1'));
+    set('d-sut2', p.get('sut2'));
+    set('d-mov1', p.get('mov1'));
+    set('d-mov2a', p.get('mov2a'));
+    set('d-mov2b', p.get('mov2b'));
+    set('d-mov3a', p.get('mov3a'));
+    set('d-mov3b', p.get('mov3b'));
+    set('d-obs', p.get('obs'));
+    set('d-rev1', p.get('rev1'));
+    set('d-rev2', p.get('rev2'));
+    set('d-rev3', p.get('rev3'));
+    set('d-emg', p.get('emg'));
+    set('d-time', p.get('time'));
+    set('d-doc', p.get('doc'));
+
+    // Medicines
+    const tbody = document.getElementById('d-meds');
     let idx = 1;
-    let foundAny = false;
-    while (params.has('m' + idx)) {
-      foundAny = true;
-      const parts = params.get('m' + idx).split('|');
+    let found = false;
+    while (p.has('m' + idx)) {
+      found = true;
+      const parts = p.get('m' + idx).split('|');
       const tr = document.createElement('tr');
       tr.innerHTML = `
         <td><b>${parts[0] || ''}</b></td>
@@ -183,8 +297,8 @@
       tbody.appendChild(tr);
       idx++;
     }
-    if (!foundAny) {
-      tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#94a3b8;">No medications specified</td></tr>';
+    if (!found) {
+      tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#94a3b8; padding: 12px;">No medications specified</td></tr>';
     }
   </script>
 </body>
