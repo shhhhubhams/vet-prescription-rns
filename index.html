@@ -58,16 +58,12 @@
       color: #334155;
       width: 18%;
     }
-    .info-table .val {
-      color: #0f172a;
-    }
+    .info-table .val { color: #0f172a; }
     .section-title {
       font-size: 13px;
       font-weight: 700;
       color: #0369a1;
       margin: 14px 0 6px 0;
-      display: flex;
-      align-items: center;
       border-bottom: 1px solid #bae6fd;
       padding-bottom: 4px;
     }
@@ -86,7 +82,6 @@
       background: #0284c7;
       color: #ffffff;
       font-weight: 600;
-      font-size: 11.5px;
     }
     .med-table tr:nth-child(even) { background: #f8fafc; }
     .instructions-list {
@@ -156,7 +151,6 @@
       <h2>POST OPERATIVE PRESCRIPTION (Orthopaedics)</h2>
     </div>
 
-    <!-- Patient & Owner Details (Rows 4 - 13) -->
     <table class="info-table">
       <tr>
         <td class="lbl">Owner Name:</td>
@@ -165,141 +159,3 @@
         <td class="val" id="d-phone">-</td>
       </tr>
       <tr>
-        <td class="lbl">OPD No:</td>
-        <td class="val"><b id="d-opd">-</b></td>
-        <td class="lbl">Date:</td>
-        <td class="val" id="d-date">-</td>
-      </tr>
-      <tr>
-        <td class="lbl">Surgery Date:</td>
-        <td class="val" id="d-sdate">-</td>
-        <td class="lbl">Body Weight:</td>
-        <td class="val"><b id="d-wt">-</b></td>
-      </tr>
-      <tr>
-        <td class="lbl">Brief History:</td>
-        <td class="val" colspan="3" id="d-hist">-</td>
-      </tr>
-      <tr>
-        <td class="lbl">Procedure:</td>
-        <td class="val" colspan="3"><b id="d-proc">-</b></td>
-      </tr>
-      <tr>
-        <td class="lbl">Findings:</td>
-        <td class="val" colspan="3" id="d-find">-</td>
-      </tr>
-    </table>
-
-    <!-- Medications Table (Rows 14 - 26) -->
-    <div class="section-title">Rx — Prescribed Medications</div>
-    <table class="med-table">
-      <thead>
-        <tr>
-          <th>Category & Medicine</th>
-          <th>Dose</th>
-          <th>Frequency</th>
-          <th>Duration</th>
-          <th>Route</th>
-        </tr>
-      </thead>
-      <tbody id="d-meds"></tbody>
-    </table>
-
-    <!-- Post-Operative Instructions & Schedules (Rows 28 - 41) -->
-    <div class="section-title">Post-Operative Care & Management</div>
-    <ul class="instructions-list">
-      <li><b>RJB Bandage:</b> Change daily if wet, otherwise on 5th day (<span class="highlight-date" id="d-rjb1">-</span>), and re-apply up to <span class="highlight-date" id="d-rjb2">-</span>.</li>
-      <li><b>Antiseptic Dressing (ASD):</b> ASD with Betadine / Spirit at the time of RJB changes.</li>
-      <li><b>Suture Removal:</b> After 10–14 days, between <span class="highlight-date" id="d-sut1">-</span> to <span class="highlight-date" id="d-sut2">-</span>.</li>
-      <li><b>Movement Restriction:</b> Complete rest for first 7 days (up to <span class="highlight-date" id="d-mov1">-</span>).</li>
-      <li><b>Leash Walking:</b> From <span class="highlight-date" id="d-mov2a">-</span> to <span class="highlight-date" id="d-mov2b">-</span>.</li>
-      <li><b>Passive Physiotherapy (PROM):</b> After 10 days, from <span class="highlight-date" id="d-mov3a">-</span> to <span class="highlight-date" id="d-mov3b">-</span>.</li>
-      <li><b>General Precautions:</b> Apply E-collar to prevent self-mutilation. Keep pet under 24-hr observation up to <span class="highlight-date" id="d-obs">-</span>. Avoid movement on slippery floors and stairs until full recovery.</li>
-    </ul>
-
-    <!-- Follow-up Revisit Dates (Row 41) -->
-    <div class="revisit-box">
-      <b>Revisit for Assessment on:</b>
-      <div class="revisit-dates">
-        <span><b>1st Revisit:</b> <span class="highlight-date" id="d-rev1">-</span></span>
-        <span><b>2nd Revisit:</b> <span class="highlight-date" id="d-rev2">-</span></span>
-        <span><b>3rd Revisit:</b> <span class="highlight-date" id="d-rev3">-</span></span>
-      </div>
-    </div>
-
-    <!-- Emergency Contact & Doctor Sign (Rows 43 - 48) -->
-    <div class="footer-section">
-      <div>
-        <div><b>Emergency Contact:</b> <span id="d-emg">+91 0</span></div>
-        <div><b>Contact Timings:</b> <span id="d-time">14:00 to 17:00</span></div>
-        <div style="color: #64748b; font-size: 10.5px; margin-top: 4px;">* Note: If scheduled visit falls on a holiday, visit on next working day.</div>
-      </div>
-      <div style="text-align: right;">
-        <div style="font-weight: 700; color: #0369a1; font-size: 13px;" id="d-doc">Dr. Ram Niwas</div>
-        <div style="font-size: 11px; color: #64748b;">Attending Surgeon</div>
-      </div>
-    </div>
-
-    <button class="btn" onclick="window.print()">Print / Save as PDF</button>
-  </div>
-
-  <script>
-    const p = new URLSearchParams(window.location.search);
-    const set = (id, val) => {
-      const el = document.getElementById(id);
-      if (el) el.textContent = val || '-';
-    };
-
-    // Header & Meta
-    set('d-owner', p.get('own'));
-    set('d-phone', p.get('ph'));
-    set('d-opd', p.get('opd'));
-    set('d-date', p.get('dt'));
-    set('d-sdate', p.get('sdt'));
-    set('d-wt', p.get('wt'));
-    set('d-hist', p.get('hist'));
-    set('d-proc', p.get('proc'));
-    set('d-find', p.get('find'));
-
-    // Post-op dates
-    set('d-rjb1', p.get('rjb1'));
-    set('d-rjb2', p.get('rjb2'));
-    set('d-sut1', p.get('sut1'));
-    set('d-sut2', p.get('sut2'));
-    set('d-mov1', p.get('mov1'));
-    set('d-mov2a', p.get('mov2a'));
-    set('d-mov2b', p.get('mov2b'));
-    set('d-mov3a', p.get('mov3a'));
-    set('d-mov3b', p.get('mov3b'));
-    set('d-obs', p.get('obs'));
-    set('d-rev1', p.get('rev1'));
-    set('d-rev2', p.get('rev2'));
-    set('d-rev3', p.get('rev3'));
-    set('d-emg', p.get('emg'));
-    set('d-time', p.get('time'));
-    set('d-doc', p.get('doc'));
-
-    // Medicines
-    const tbody = document.getElementById('d-meds');
-    let idx = 1;
-    let found = false;
-    while (p.has('m' + idx)) {
-      found = true;
-      const parts = p.get('m' + idx).split('|');
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td><b>${parts[0] || ''}</b></td>
-        <td>${parts[1] || ''}</td>
-        <td>${parts[2] || ''}</td>
-        <td>${parts[3] || ''}</td>
-        <td>${parts[4] || ''}</td>
-      `;
-      tbody.appendChild(tr);
-      idx++;
-    }
-    if (!found) {
-      tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#94a3b8; padding: 12px;">No medications specified</td></tr>';
-    }
-  </script>
-</body>
-</html>
