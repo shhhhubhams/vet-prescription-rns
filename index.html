@@ -175,4 +175,81 @@
       </tr>
       <tr>
         <td class="lbl">Findings:</td>
-        <td class="val" colspan="3" id="d-
+        <td class="val" colspan="3" id="d-find">-</td>
+      </tr>
+    </table>
+
+    <!-- Rows 13 to 26 -->
+    <div class="section-title">Rx — Prescribed Medications</div>
+    <table class="med-table">
+      <thead>
+        <tr>
+          <th>Category & Medicine</th>
+          <th>Dose</th>
+          <th>Frequency</th>
+          <th>Duration</th>
+          <th>Route</th>
+        </tr>
+      </thead>
+      <tbody id="d-meds"></tbody>
+    </table>
+
+    <!-- Rows 27 to 40 -->
+    <div class="section-title">Post-Operative Care & Management</div>
+    <ul class="instructions-list">
+      <li><b>RJB Bandage:</b> Change daily if wet, otherwise on 5th day (<span class="highlight-date" id="d-rjb1">-</span>), and re-apply up to <span class="highlight-date" id="d-rjb2">-</span>.</li>
+      <li><b>Antiseptic Dressing (ASD):</b> ASD with Betadine / Spirit at the time of RJB changes.</li>
+      <li><b>Suture Removal:</b> After 10–14 days, between <span class="highlight-date" id="d-sut1">-</span> to <span class="highlight-date" id="d-sut2">-</span>.</li>
+      <li><b>Movement Restriction:</b> Complete rest for first 7 days (up to <span class="highlight-date" id="d-mov1">-</span>).</li>
+      <li><b>Leash Walking:</b> From <span class="highlight-date" id="d-mov2a">-</span> to <span class="highlight-date" id="d-mov2b">-</span>.</li>
+      <li><b>Passive Physiotherapy (PROM):</b> After 10 days, from <span class="highlight-date" id="d-mov3a">-</span> to <span class="highlight-date" id="d-mov3b">-</span>.</li>
+      <li><b>General Precautions:</b> Apply E-collar to prevent self-mutilation. Keep pet under 24-hr observation up to <span class="highlight-date" id="d-obs">-</span>. Avoid movement on slippery floors and stairs until full recovery.</li>
+    </ul>
+
+    <!-- Row 40 Revisit -->
+    <div class="revisit-box">
+      <b>Revisit for Assessment on:</b>
+      <div class="revisit-dates">
+        <span><b>1st Revisit:</b> <span class="highlight-date" id="d-rev1">-</span></span>
+        <span><b>2nd Revisit:</b> <span class="highlight-date" id="d-rev2">-</span></span>
+        <span><b>3rd Revisit:</b> <span class="highlight-date" id="d-rev3">-</span></span>
+      </div>
+    </div>
+
+    <!-- Rows 42 to 46 -->
+    <div class="footer-section">
+      <div>
+        <div><b>Emergency Contact:</b> <span id="d-emg">+91 0</span></div>
+        <div><b>Contact Timings:</b> 14:00 to 17:00</div>
+        <div style="color: #64748b; font-size: 10.5px; margin-top: 4px;">* Note: If scheduled visit falls on a holiday, visit on next working day.</div>
+      </div>
+      <div style="text-align: right;">
+        <div style="font-weight: 700; color: #0369a1; font-size: 13px;">Dr. Ram Niwas</div>
+        <div style="font-size: 11px; color: #64748b;">Attending Surgeon</div>
+      </div>
+    </div>
+
+    <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+  </div>
+
+  <script>
+    const p = new URLSearchParams(window.location.search);
+    const set = (id, val) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = val || '-';
+    };
+
+    const parseDt = (str) => {
+      if (!str) return null;
+      const parts = str.split('/');
+      if (parts.length === 3) {
+        return new Date(parseInt(parts[2]), parseInt(parts[1]) - 1, parseInt(parts[0]));
+      }
+      return new Date(str);
+    };
+
+    const addDays = (d, n) => {
+      if (!d || isNaN(d.getTime())) return '-';
+      const res = new Date(d);
+      res.setDate(res.getDate() + n);
+      return `${String(res.getDate()).padStart(2, '0')}/${String(res.getMonth() +
